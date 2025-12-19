@@ -1,0 +1,42 @@
+---
+title: "IDR4000 Portfolio assessment"
+author: Henrik Picton
+bibliography: references.bib
+csl: _extensions/wjschne/apaquarto/apa.csl
+format: typst
+execute:
+    cache: true
+---
+# Assignment 1 - Effect of resistance training on muscle hypertrophy
+
+## 1.1 Choice of subject
+Muscle hypertrophy is the growth of individual muscle fibers that results from an increase in the number of sarcomeres in parallel within the myofibrils [@goldspinkProliferationMyofibrilsMuscle1970]. Traditional resistance training is known to increase hypertrophy, which in turn increase muscle size and strength [@schoenfeldMechanismsMuscleHypertrophy2010]. 
+
+## 1.2 Finding the literature
+All literature discussed in this assignment were accessed through PubMed [@NationalCenterBiotechnology]. Only one set of key words was used to find the studies: (((Strength training) AND (muscle hypertrophy)) OR (muscle mass)) OR (lean mass), «clinical trial» or «Randomized controlled trial» published between 2005 and 2025. Of 4121 results 10 studies including a measurement of muscle mass pre and post an intervention were chosen (Table 1).
+
+```{r}
+#| label: tbl-table1
+#| tbl-cap: "This is table 1"
+#| message: false
+#| warning: false
+#| echo: false
+
+library(tidyverse)
+library(gt)
+
+table1 <- data.frame(Author = c("Chaves et al. (2024)", "Cribb et al. (2007)", "Evangelista et al. (2021)",
+                                "Kassiano et al. (2023)", "Neves et al. (2022)", "Ruple et al. (2023)", "Schoenfeld et al. (2015)", "Schoenfeld et al. (2016)",
+                                "Schoenfeld et al. (2019)", "Wohlann et al. (2024)"),
+                    Design = c("Randomized, Controlled, Single blinded, within-subject", 
+                               "Double-blinded randomized between group", "Randomized between group",
+                               "Randomized between group", "Randomized within and between-subject",
+                               "Randomized between-group", "Randomized between-group", 
+                               "Randomized between-group", "Randomized between-group", "Controlled"))
+
+table1 |> 
+            gt()
+
+
+```
+
