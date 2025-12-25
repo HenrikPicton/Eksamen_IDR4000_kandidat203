@@ -9,15 +9,17 @@ execute:
 ---
 # Assignment 1 - Effect of resistance training on muscle hypertrophy
 
-## 1.1 Choice of subject
-Muscle hypertrophy is the growth of individual muscle fibers that results from an increase in the number of sarcomeres in parallel within the myofibrils [@goldspinkProliferationMyofibrilsMuscle1970]. Traditional resistance training is known to increase hypertrophy, which in turn increase muscle size and strength [@schoenfeldMechanismsMuscleHypertrophy2010]. 
+## 1.1 Introduction
+Muscle hypertrophy is the growth of individual muscle fibres resulting from an increase in the number of sarcomeres arranged in parallel within the myofibrils [@goldspinkProliferationMyofibrilsMuscle1970].  Resistance training (RT) is known to induce hypertrophy, which in turn increases muscle size and strength [@schoenfeldMechanismsMuscleHypertrophy2010]. Greater muscle mass is associated with improved health parameters and enhanced athletic performance [@liAssociationsMuscleMass2018; @suchomelImportanceMuscularStrength2016]. This assignment examines how ten intervention studies investigated the effects of RT on muscle hypertrophy, with a focus on study design, RT interventions, measurement methods, and finally, methods for statistical analyses.
 
 ## 1.2 Finding the literature
 All literature discussed in this assignment were accessed through PubMed [@NationalCenterBiotechnology]. Only one set of key words was used to find the studies: (((Strength training) AND (muscle hypertrophy)) OR (muscle mass)) OR (lean mass), «clinical trial» or «Randomized controlled trial» published between 2005 and 2025. Of 4121 results 10 studies including a measurement of muscle mass pre and post an intervention were chosen (Table 1).
 
+## 1.3 Literature overview
+
 ```{r}
 #| label: tbl-table1
-#| tbl-cap: "This is table 1"
+#| tbl-cap: "The ten studies, their study design, measurement, and statistical method for investigating muscle hypertrophy"
 #| message: false
 #| warning: false
 #| echo: false
@@ -34,15 +36,68 @@ table1 <- data.frame(Author = c("Chaves et al. (2024)", "Cribb et al. (2007)", "
 
                      n = c("39", "33", "67", "42", "24", "19", "24", "23", "45", "81"),
 
-                     Hypertrophy = c("VL mCSA (US)", "lean mass (DXA), fiber specific CSA (biopsy)",
+                     Measurement = c("VL mCSA (US)", "lean mass (DXA), fiber specific CSA (biopsy)",
                                      "VL, BB, TB, RF and VL MT (US)", "MGC and LGC (US)", 
                                      "QF mCSA (MRI)", "VL mCSA (US)",
-                                     "BB + Brachialis, TB, RF, VI, VL MT (US)", "-||-", "-||-",
-                                     "PM MT (US)"))
+                                     "BB + Brachialis, TB, RF, VI, VL MT (US)", "BB + Brachialis, TB, RF, VI, VL MT (US)", "BB + Brachialis, TB, RF, VI, VL MT (US)",
+                                     "PM MT (US)"),
+                     Statistics = c("RM-ANOVA", "RM-ANOVA", "RM-ANOVA", "ANCOVA", "RM-ANOVA", "LMM",
+                                    "RM-ANOVA", "RM-ANOVA", "RM-ANOVA", "RM-ANOVA"))
 
 table1 |> 
             gt()
 
 
 ```
+
+## 1.4 Study design
+All studies selected were of an experimental approach. All but one of the studies had participants randomized into groups. @wohlannInfluence8weeksSupervised2024 had some participants who did not want to take part in a specific group, which made it impossible for the study to be entirely randomized. This study is at risk of unclear (and probably high) risk of selection bias [@thieseObservationalInterventionalStudy2014]. Two of the studies randomized within individuals (i.e., @chavesEffectsResistanceTraining2024: one leg increased reps progressively the other leg increased load, and @nevesEffectDifferentTraining2022: one leg trained three times a week, the other one time per week). 
+
+As participants cannot be blinded to the RT protocol, performance and expectancy bias may be an inherent limitation, and any such bias could affect the apparent effect of a certain training protocol on muscle hypertrophy. Blinding the researchers helps with reducing the risk of bias affecting the study [@karanicolasPracticalTipsSurgical2010]. However, only three of the selected studies mentioned researchers being blinded in the process of assessing muscle hypertrophy [@chavesEffectsResistanceTraining2024; @kassianoGreaterGastrocnemiusMuscle2023; @nevesEffectDifferentTraining2022].
+
+Allocating a portion of the participants into a non-exercise control group strengthens causal inference [@thieseObservationalInterventionalStudy2014]. Only two articles mention a control group. @chavesEffectsResistanceTraining2024 labelled the group following the traditional and widely recommended progressive overload-group as the “control”, making it an active comparator rather than a non-exercise group. @wohlannInfluence8weeksSupervised2024 included a control group without an experimental training intervention, providing a stronger benchmark for inferring causal effects on hypertrophy.
+
+## 1.5 How long RT intervention is needed?
+The RT intervention length of each study varied from 6 to 11 weeks. The 6-week long RT intervention tested by @rupleEffectsResistanceTraining2023 did not yield any significant increase in muscle Cross Sectional Area (mCSA) of the Vasus Lateralis (VL) on trained individuals, which can indicate that the intervention length did not give enough time for hypertrophic adaptations to take place. In comparison, @schoenfeldEffectsLowVs2015 with participants of similar background went through an 8-week intervention where both experimental groups had significant increases in the Biceps Brachii (BB), Triceps Brachii (TB) and Quadriceps Femoris (QF) muscle thickness (MT) post intervention. This suggests that an RT intervention of 8 weeks or more are necessary to induce enough stimulus for muscle hypertrophy, especially in the case of participants with RT experience. This is further supported by Schoenfeld’s two other studies as they also show a significant change in MT post 8-week  interventions on RT experienced participants [@schoenfeldLongerIntersetRest2016; @schoenfeldResistanceTrainingVolume2019]. 
+
+## 1.6 How is RT conducted during the intervention?
+All the studies had at least one experimental group exercising at a moderate to high RT intensity. However, the load prescription and methods used to measure given intensity varied. All the studies’ RT protocols used the term “Concentric failure”, meaning the participants did repetitions until they physically could not move the weight for another repetition. The only exceptions being the stretching group from @wohlannInfluence8weeksSupervised2024 and the high-Reps In Reserve (RIR) group from @rupleEffectsResistanceTraining2023. RIR is a term used to describe intensity of a RT set. It is, as the name suggests, the amount of repetitions a person believes they could complete after the repetition range is met [@helmsApplicationRepetitionsReserveBased2016]. The stretching group from @wohlannInfluence8weeksSupervised2024 did not conduct any form of RT, the protocol consisted of stretching the chest for 15 minutes to maximum tolerable discomfort 4 times a week.
+
+The repetition range set varied from study to study. The most common prescription across the studies was doing repetitions within a range of 8-12RM (Repetitions Maximum), with a few exceptions [@chavesEffectsResistanceTraining2024; @cribbEffectsWheyIsolate2007; @evangelistaSplitFullbodyWorkout2021; @rupleEffectsResistanceTraining2023; @schoenfeldEffectsLowVs2015; @schoenfeldLongerIntersetRest2016; @schoenfeldResistanceTrainingVolume2019; @wohlannInfluence8weeksSupervised2024]. The exceptions being the increasing repetition group in @chavesEffectsResistanceTraining2024 as they set the load to 80% 1RM and increased repetitions from session to session, @kassianoGreaterGastrocnemiusMuscle2023 who did 15-20RM, @nevesEffectDifferentTraining2022 who had a linear increase in intensity (12RM week 1-3, 10RM week 4-6, and 8RM week 7-9), and finally, the low load group in @schoenfeldEffectsLowVs2015 doing 25-35RM.
+
+Every RT group trained the target muscle at least twice a week, which goes in hand with the current literature, suggesting resistance training of each muscle at least twice a week to maximize muscle hypertrophy [@schoenfeldEffectsResistanceTraining2016]. The only exception is @nevesEffectDifferentTraining2022, as they compared a low (1x week) and high (3x week) weekly RT frequency.
+
+## 1.7 Measurement methods
+There were 4 different methods used in the 10 studies, MT from Ultrasonography (US), mCSA from US or Magnetic Resonance Imaging (MRI), and finally muscle fibre specific CSA and contractile protein content analysed from muscle biopsies. 
+
+## 1.7.1 Magnetic Resonance Imaging
+Because of its accurate and non-invasive measurement of muscle mass, MRI is known as the gold standard for establishing mCSA [@lixandraoVastusLateralisMuscle2014; @mitsiopoulosCadaverValidationSkeletal1998]. @nevesEffectDifferentTraining2022 were the only study to use MRI to establish the mCSA of Quadriceps Femoris pre and post intervention. Assessment of the MRI images were plotted by a blinded specialized researcher. The biggest problem with MRI is its availability and need for specialized expertise, which is why several studies prefer US as their method for measuring muscle hypertrophy [@franchiMuscleThicknessCorrelates2018].
+
+## 1.7.2 Ultrasonography
+There were two separate measurement methods undertaken with US: MT and mCSA. Six of the studies used the MT method, which is a direct measurement of the thickness of a specific point along the target (typically half way) muscle from medial to lateral end [@franchiMuscleThicknessCorrelates2018]. Of the 8 studies using US, 6 used the MT method of measurement [@evangelistaSplitFullbodyWorkout2021; @kassianoGreaterGastrocnemiusMuscle2023; @rupleEffectsResistanceTraining2023; @schoenfeldEffectsLowVs2015, @schoenfeldLongerIntersetRest2016, @schoenfeldResistanceTrainingVolume2019]. 
+
+Measuring mCSA with an US probe requires several pictures from different points of the muscle to assemble images for analysis. @chavesEffectsResistanceTraining2024 would capture several images from the lateral to the medial end of the VL, then compile them in PowerPoint so they were oriented correctly and the mCSA could be measured in a separate program (ImageJ). Unlike the aforementioned method, @rupleEffectsResistanceTraining2023 placed the probe perpendicular to the femur bone, capturing the entirety of the VL as a “slice”. These images would be taken at three separate locations along the same line on the VL muscle, which would finally be analysed in the same program as mentioned above.
+
+## 1.7.3 Muscle biopsy and DXA lean mass
+@cribbEffectsWheyIsolate2007 used three methods to measure muscle hypertrophy: Contractile protein content, fibre specific CSA, and total lean-body-mass measurements from DXA. After a muscle biopsy of the VL, a small part of the sample is frozen for later contractile protein content analysis. Contractile protein assessment is a measurement that can support measurements of hypertrophy, as it can deduct if the increase in specific fibre CSA and lean mass is caused by an increase of liquid content through inflammation as a response to RT, or an actual increase in muscle protein content [@haunCriticalEvaluationBiological2019]. 
+
+DXA can be used to measure fat-free mass with good accuracy [@kimTotalbodySkeletalMuscle2002]. It was used in this study to estimate the changes in both fat percentage and lean mass after intervention [@cribbEffectsWheyIsolate2007].
+
+## 1.8 Statistical methods
+To investigate if hypertrophy occurred, 9 of the 10 studies investigated the within individual effect of time on muscle mass. Of these nine studies, eight used a Repeated Measures-ANOVA (RM-ANOVA), and one used a Linear Mixed Model [@rupleEffectsResistanceTraining2023]. @kassianoGreaterGastrocnemiusMuscle2023 used a one-way ANCOVA with baseline adjusted post-values to investigate differences in hypertrophy between groups.
+
+The RM-ANOVA model is appropriate for testing the significance of the effect of time on the outcome variable, in this case, hypertrophy, as it accounts for the dependency between pre- and post-measurements of each participant. Repeated-measures approaches reduce inter-individual variance and increase the statistical power, which is important in RT studies where the norm is small sample sizes with large biological variability [@schoberRepeatedMeasuresDesigns2018]. 
+
+## 1.9 Causal inference
+A well-conducted Randomized Controlled Trial (RCT) is a strong method for supporting causal inference regarding the effect of RT on hypertrophy. However, if key features are lacking, it may be susceptible to uncontrolled variance or biased data. Furthermore, while RCTs can establish whether hypertrophy occurs, they cannot establish the biological or mechanistic processes behind that occurrence [@heckstedenHowConstructConduct2018].
+
+## 1.10 Future aspects
+As mentioned earlier, some studies lacked randomization of participants. Future studies should therefore randomize participants into experimental and control groups to reduce the risk of selection bias. Future studies should blind researchers, as this would strengthen the causal inference by reducing the influence of assessor bias. Finally, future studies should include a control group that does not participate in any form of experimental intervention, as this would further strengthen the aforementioned causal inference.
+
+Additionally, an RT intervention of 8 weeks or longer is recommended, especially with resistance trained participants, as hypertrophic adaptations may require extended exposure; this is supported by differences in outcomes observed between a 6-week [@rupleEffectsResistanceTraining2023] and an 8-week [@schoenfeldEffectsLowVs2015; @schoenfeldLongerIntersetRest2016; @schoenfeldResistanceTrainingVolume2019] training intervention.
+
+## 1.11 Conclusion
+The literature reviewed in this assignment demonstrates how the ten selected studies investigate the effects RT have on muscle hypertrophy, which is commonly tested using experimental intervention designs with a pre- and post-measurements of target muscles where US dominated as measurement method. Across the chosen studies, repeated-measures statistical approaches dominate, reflecting the longitudinal nature of hypertrophic adaptations and the need to account for within-individual dependency. While RCTs provide strong support for causal inference regarding the effect of resistance training on muscle size, limitations related to study design, measurement methods, and bias restrict mechanistic interpretation. Future research would benefit from continued methodological rigor, particularly through improved randomization, assessor blinding, and the inclusion of appropriate control groups, to further strengthen causal inference in RT research. 
+
+
 
