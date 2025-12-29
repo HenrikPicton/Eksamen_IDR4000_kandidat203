@@ -4,6 +4,7 @@ author: Henrik Picton
 bibliography: references.bib
 csl: _extensions/wjschne/apaquarto/apa.csl
 format: typst
+classoption: 12pt
 execute:
     cache: true
 ---
@@ -13,7 +14,7 @@ execute:
 Muscle hypertrophy is the growth of individual muscle fibres resulting from an increase in the number of sarcomeres arranged in parallel within the myofibrils [@goldspinkProliferationMyofibrilsMuscle1970].  Resistance training (RT) is known to induce hypertrophy, which in turn increases muscle size and strength [@schoenfeldMechanismsMuscleHypertrophy2010]. Greater muscle mass is associated with improved health parameters and enhanced athletic performance [@liAssociationsMuscleMass2018; @suchomelImportanceMuscularStrength2016]. This assignment examines how ten intervention studies investigated the effects of RT on muscle hypertrophy, with a focus on study design, RT interventions, measurement methods, and finally, methods for statistical analyses.
 
 ## 1.2 Finding the literature
-All literature discussed in this assignment were accessed through PubMed [@NationalCenterBiotechnology]. Only one set of key words was used to find the studies: (((Strength training) AND (muscle hypertrophy)) OR (muscle mass)) OR (lean mass), «clinical trial» or «Randomized controlled trial» published between 2005 and 2025. Of 4121 results 10 studies including a measurement of muscle mass pre and post an intervention were chosen (Table 1).
+All literature discussed in this assignment were accessed through PubMed [@NationalCenterBiotechnology]. Only one set of key words was used to find the studies: (((Strength training) AND (muscle hypertrophy)) OR (muscle mass)) OR (lean mass), «clinical trial» or «Randomized controlled trial» published between 2005 and 2025. Of 4121 results 10 studies including a measurement of muscle mass pre and post an intervention were chosen (@tbl-table1).
 
 ## 1.3 Literature overview
 
@@ -45,7 +46,11 @@ table1 <- data.frame(Author = c("Chaves et al. (2024)", "Cribb et al. (2007)", "
                                     "RM-ANOVA", "RM-ANOVA", "RM-ANOVA", "RM-ANOVA"))
 
 table1 |> 
-            gt()
+            gt() |> 
+                 tab_options(
+                    table.font.size = px(12)) |> 
+                 tab_source_note(
+                    source_note = "Abbreviations: RCT = randomized controlled trial; US = ultrasound; MRI = magnetic resonance imaging; VL = vastus lateralis; BB = biceps brachii; TB = triceps brachii; RF = rectus femoris; VI = vastus intermedius; MT = muscle thickness; mCSA = muscle cross-sectional area.")
 
 
 ```
