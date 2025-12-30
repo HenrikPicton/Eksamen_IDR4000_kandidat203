@@ -111,29 +111,115 @@ Research question: Is higher baseline musclemass associated with a greater hyper
 
 Null hypothesis: Higher baseline musclemass is not associated with a greater hypertrophic response
 Alternative hypothesis: Higher baseline musclemass is associated with greater hypertrophic response
+
 ## 2.2 Methods
 
-## 2.3 Results
+### 2.2.1 Participants
+Participants were evaluated through a screening process with two criteria: a self reported RT experience of < 1.0 years, and a back squat 1RM ≥ 1.5 x body mass (calculated from a trhee-repetition maximum (RM) test). 34 Participants completed the screening. One participant dropped out due to personal reasons, two others for not being able to complete the RT intervention, which led to a final count of 31 participants (@tbl-table2). 
 
 ```{r}
+#| label: tbl-table2
+#| tbl-cap: "Participant characteristics at baseline (pre)"
+#| message: false
+#| warning: false
+#| echo: false
+
 library(exscidata)
 library(tidyverse)
 library(gt)
 
-Dataset <- hypertrophy
+dataset <- hypertrophy
   
   
-prepost <- Dataset |>
-     select(
-      PARTICIPANT,
-      VL_T1,
-      VL_T4,
-      DXA_LBM_T1,
-      DXA_LBM_T3
-   )
+prevalues <- dataset |>
+  select(
+    AGE,
+    HEIGHT,
+    BODYMASS_T1,
+    DXA_LBM_T1,
+    VL_T1,
+    BICEPS_T1
+  )
 
-gt(prepost)
+descriptives <- prevalues |>
+  summarise(across(
+    everything(),
+    ~ sprintf("%.2f ± %.2f",
+              mean(.x, na.rm = TRUE),
+              sd(.x, na.rm = TRUE))
+  )) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Mean ± SD"
+  ) |>
+  mutate(
+    Variable = recode(Variable,
+      AGE = "Age (years)",
+      HEIGHT = "Height (cm)",
+      BODYMASS_T1 = "Body mass (kg)",
+      DXA_LBM_T1 = "Lean body mass (kg)",
+      VL_T1 = "Vastus lateralis thickness (mm)",
+      BICEPS_T1 = "Biceps brachii thickness (mm)"
+    )
+  )
+
+descriptives |>
+  gt() |>
+  cols_label(`Mean ± SD` = "Mean ± SD") |> 
+  tab_options(
+                    table.font.size = px(12)) |> 
+                 tab_source_note(
+                    source_note = "Data is presented as Mean ± SD")
+  
+
 ```
+
+### 2.2.2 Ultrasonography and DXA
+
+### 2.2.3 RT intervention
+
+### 2.2.4 Statistical methods
+
+
+
+## 2.3 Results
+
+```{r}
+#| include: false
+
+analysis_data <- hypertrophy |>
+  select(
+    DXA_LBM_T1, DXA_LBM_T3,
+    VL_T1, VL_T4,
+    BICEPS_T1, BICEPS_T4
+  ) |>
+  drop_na()
+
+analysis_dxa <- hypertrophy |>
+  select(
+    DXA_LBM_T1, DXA_LBM_T3
+  ) |>
+  drop_na()
+
+analysis_vl <- hypertrophy |>
+  select(
+    VL_T1, VL_T4,
+  ) |>
+  drop_na()
+
+analysis_bb <- hypertrophy |>
+  select(
+    BICEPS_T1, BICEPS_T4
+   ) |>
+  drop_na()
+
+nrow(analysis_data)
+nrow(analysis_dxa)
+nrow(analysis_vl)
+nrow(analysis_bb)
+
+``` 
 
 ## 2.4 Discussion
 
