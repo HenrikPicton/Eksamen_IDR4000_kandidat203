@@ -107,10 +107,14 @@ The literature reviewed in this assignment demonstrates how the ten selected stu
 # 2.0 Assignment 2 - Study report OUTLINE
 
 ## 2.1 Introduction
-Research question: Is higher baseline musclemass associated with a greater hypertrophic response to resistance traning? 
+Muscle hypertrophy is an adaptive process whereby exposure to an external stimulus leads to remodelling of muscle architecture, resulting in an increase in muscle cross-sectional area (MCSA) [@mcardleMuscleHyoertrophy2023]. Resistance training (RT) is considered the most effective exercise modality to induce muscle hypertrophy, primarily through the application of mechanical tension, muscle damage, and metabolic stress. Mechanical tension is the active force generation and passive stretch, caused by an external load on the muscles, initiating a signalling cascade that increases the rate of muscle protein synthesis.  Muscle damage caused by RT initiates an inflammatory response, resulting in the activation of satellite cells promoting repair and remodelling of muscle fibres, contributing to hypertrophy. Combined with mechanical tension, metabolic stress may assist in hypertrophic response through several indirect mechanisms (e.g. cell swelling, increased hormonal response, hypoxia, and activation of growth-related transcription factors) [@schoenfeldMechanismsMuscleHypertrophy2010].
 
-Null hypothesis: Higher baseline musclemass is not associated with a greater hypertrophic response
-Alternative hypothesis: Higher baseline musclemass is associated with greater hypertrophic response
+Greater muscle size is associated with greater strength, which improves athletic performance [@maughanStrengthCrosssectionalArea1983; @suchomelImportanceMuscularStrength2016; @tromarasLeanBodyMass2024]. Additionally, an increase in muscle size is connected to a significant improvement of metabolic health [@liAssociationsMuscleMass2018]. Reviews have previously suggested that RT induced hypertrophy diminishes as an individual becomes more trained, with slower rates of morphological change compared with untrained individuals [@fonsecaComparisonTraditionalAdvanced2023]. 
+
+@mangineInfluenceBaselineMuscle2018 investigated the effects of baseline muscle size on training adaptations. 14 young men with an average resistance training experience of ~6 years were recruited and split into two equal groups based on MCSA: the larger (LGR, n = 7) and smaller (SMR, n = 7) group. After an 8-week intervention they did not find a significant difference in muscle growth between the LGR and SMR group. 
+
+In contrast to @mangineInfluenceBaselineMuscle2018, this study will maintain baseline muscle mass as a continuous variable, conserving statistical power. To investigate the association between baseline muscle characteristics (muscle thickness (MT) and lean mass) and muscle hypertrophy, 31 trained men were recruited and measured (full-body DXA of lean mass and ultrasound of Vastus Lateralis (VL) and Biceps Brachii (BB)) before and after a 6-week intervention. Supported by theories from @fonsecaComparisonTraditionalAdvanced2023, the hypothesis is that there is a negative association between baseline muscle characteristics and muscle hypertrophy.
+
 
 ## 2.2 Methods
 
@@ -178,7 +182,7 @@ descriptives |>
 ```
 
 ### 2.2.2 Body composition and muscle thickness measurements
-Body composition and muscle thickness measurements were assessed approximately 48h before the first RT session and 24h after the last completed RT session, participants were instructed to fast 12 hours prior to each test. First, body mass (Seca 769; Hanover, MD, USA) and height were assessed to the nearest 0.1 kg and 0.5 cm respectively. Then a full body duo x-ray absorptiometry (DXA) scan of each individual was conducted (Lunar Prodigy; GE Corporation, Fairfield, CT, USA). All DXA scans were done by the same researcher. Finally, duplicate measurements of the right side of the body were averaged with a 3-12 MHz multi-frequency linear phase transducer (Logiq S7 Expert; General Electric, Fairfield, CT, USA) to evaluate right Vastus Lateralis (VL) and Biceps Brachii (BB) muscle thickness (MT). 
+Body composition and MT measurements were assessed approximately 48h before the first RT session and 24h after the last completed RT session, participants were instructed to fast 12 hours prior to each test. First, body mass (Seca 769; Hanover, MD, USA) and height were assessed to the nearest 0.1 kg and 0.5 cm respectively. Then a full body duo x-ray absorptiometry (DXA) scan of each individual was conducted (Lunar Prodigy; GE Corporation, Fairfield, CT, USA). All DXA scans were done by the same researcher. Finally, duplicate measurements of the right side of the body were averaged with a 3-12 MHz multi-frequency linear phase transducer (Logiq S7 Expert; General Electric, Fairfield, CT, USA) to evaluate right Vastus Lateralis (VL) and Biceps Brachii (BB) muscle thickness (MT). 
 
 During the ultrasonography (US) MT assessment, participants were instructed to stand with their weight on their left leg to assure that the right VL was relaxed during measurement. The US probe was placed horizontally at a marked point 50% of the distance between the Iliac crest and Patella of the Femur, this was done twice. The procedure for BB MT was similar, the probe was placed horizontally on the marked point 60% distal from the acromial process of the scapula to the lateral epicondyle of the humerus, this was repeated twice in the same manner.
 
@@ -190,8 +194,6 @@ The training volume increased each week. The Monday and Friday sessions stared w
 
 ### 2.2.4 Statistical methods
 Before analysing the results, a visual inspection of Q-Q plots was conducted to ensure that the residuals were approximately normally distributed. To investigate the effects of baseline muscle mass on hypertrophy, a linear model was used for each outcome (BB MT, VL MT, and DXA lean mass). Regression coefficients, 95% confidence intervals, and coefficients of determination (R²) were reported. A p-value of ≤ .05 was considered statistically significant. All statistical analyses were performed using R in Positron (R version 4.4.2, Positron).
-
-## 2.3 Results
 
 ```{r}
 #| include: false
@@ -220,7 +222,69 @@ qqnorm(resid(lm_vl));  qqline(resid(lm_vl))
 qqnorm(resid(lm_bb));  qqline(resid(lm_bb))
 qqnorm(resid(lm_dxa)); qqline(resid(lm_dxa))
 
+extract_lm <- function(m, term, outcome) {
+  s <- summary(m)
+  ci <- confint(m)[term, ]
+
+  tibble(
+    Outcome = outcome,
+    Beta = round(s$coefficients[term, "Estimate"], 3),
+    SE = round(s$coefficients[term, "Std. Error"], 3),
+    p = signif(s$coefficients[term, "Pr(>|t|)"], 3),
+    CI_low = round(ci[1], 3),
+    CI_high = round(ci[2], 3),
+    R2 = round(s$r.squared, 3),
+    n = nobs(m)
+  )
+}
+
+results <- bind_rows(
+  extract_lm(lm_vl,  "VL_T1",      "VL MT (Δ)"),
+  extract_lm(lm_bb,  "BICEPS_T1",  "BB MT (Δ)"),
+  extract_lm(lm_dxa, "DXA_LBM_T1", "DXA lean mass (Δ)")
+)
+
+
+results <- results |>
+  mutate(
+    p_display = if_else(p < 0.001, "<0.001", sprintf("%.3f", p))
+  )
+
+
+
 ``` 
+
+## 2.3 Results
+
+
+
+```{r}
+#| label: tbl-table3
+#| tbl-cap: "Changes in MT and lean mass"
+#| message: false
+#| warning: false
+#| echo: false
+
+results |>
+  select(
+    Outcome, Beta, SE,
+    p_display,
+    CI_low, CI_high,
+    R2, n
+  ) |>
+  gt() |>
+  cols_label(
+    Outcome = "Outcome",
+    Beta = "β",
+    SE = "SE",
+    p_display = "p",
+    CI_low = "95% CI (lower)",
+    CI_high = "95% CI (upper)",
+    R2 = "R²",
+    n = "n") |> 
+   tab_source_note(source_note = "NEEDS TO BE DONE")
+
+```
 
 ## 2.4 Discussion
 
