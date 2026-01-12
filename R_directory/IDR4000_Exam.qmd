@@ -51,7 +51,7 @@ table1 |>
                  tab_options(
                     table.font.size = px(12)) |> 
                  tab_source_note(
-                    source_note = "Abbreviations: RCT = randomized controlled trial; US = ultrasound; MRI = magnetic resonance imaging; VL = vastus lateralis; BB = biceps brachii; TB = triceps brachii; RF = rectus femoris; VI = vastus intermedius; MT = muscle thickness; mCSA = muscle cross-sectional area.")
+                    source_note = md("**RCT** = randomized controlled trial; **US** = ultrasound; **MRI** = magnetic resonance imaging; **VL** = vastus lateralis; **BB** = biceps brachii; **TB** = triceps brachii; **RF** = rectus femoris; **VI** = vastus intermedius; **MT** = muscle thickness; **mCSA** = muscle cross-sectional area."))
 
 
 ```
