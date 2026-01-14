@@ -51,7 +51,7 @@ execute:
 #heading(level: 1, numbering: none)[Github link]
 #v(1em)
 
-All data collected and analyzed are available in the github repositoty linked below:
+The Quarto source code for the entire Exam is available at the link provided below, the document in the directory is called "IDR4000_Exam.qmd".
 
 #v(1em)
 *Repository:* #link("https://github.com/HenrikPicton/Eksamen_IDR4000_kandidat203")[https://github.com/HenrikPicton/Eksamen_IDR4000_kandidat203]
@@ -59,6 +59,10 @@ All data collected and analyzed are available in the github repositoty linked be
 ```
 
 # Assignment 1 - Effect of resistance training on muscle hypertrophy
+### Candidate number: 203
+### Word count: 2068
+{{< pagebreak >}}
+
 
 ## 1.1 Introduction
 Muscle hypertrophy is the growth of individual muscle fibres resulting from an increase in the number of sarcomeres arranged in parallel within the myofibrils [@goldspinkProliferationMyofibrilsMuscle1970].  Resistance training (RT) is known to induce hypertrophy, which in turn increases muscle size and strength [@schoenfeldMechanismsMuscleHypertrophy2010]. Greater muscle mass is associated with improved health parameters and enhanced athletic performance [@liAssociationsMuscleMass2018; @suchomelImportanceMuscularStrength2016]. This assignment examines how ten intervention studies investigated the effects of RT on muscle hypertrophy, with a focus on study design, RT interventions, measurement methods, and finally, methods for statistical analyses.
@@ -157,7 +161,10 @@ The literature reviewed in this assignment demonstrates how the ten selected stu
 
 {{< pagebreak >}}
 
-# 2.0 Assignment 2 - Is higher baseline muscle mass associated with a greater hypertrophic response to resistance training? 
+# Assignment 2 - Is higher baseline muscle mass associated with a greater hypertrophic response to resistance training? 
+### Candidate number: 203
+### Word count: 2311
+{{< pagebreak >}}
 
 ## 2.1 Introduction
 Muscle hypertrophy is an adaptive process whereby exposure to an external stimulus leads to remodelling of muscle architecture, resulting in an increase in muscle cross-sectional area (MCSA) [@mcardleMuscleHypertrophy2023]. Resistance training (RT) is considered the most effective exercise modality to induce muscle hypertrophy, primarily through the application of mechanical tension, muscle damage, and metabolic stress. Mechanical tension is the active force generation and passive stretch, caused by an external load on the muscles, initiating a signalling cascade that increases the rate of muscle protein synthesis.  Muscle damage caused by RT initiates an inflammatory response, resulting in the activation of satellite cells promoting repair and remodelling of muscle fibres, contributing to hypertrophy. Combined with mechanical tension, metabolic stress may assist in hypertrophic response through several indirect mechanisms (e.g. cell swelling, increased hormonal response, hypoxia, and activation of growth-related transcription factors) [@schoenfeldMechanismsMuscleHypertrophy2010].
@@ -496,7 +503,10 @@ The aim of this study was to establish whether greater baseline muscle mass is a
 
 {{< pagebreak >}}
 
-# 3.0 Assignment 3 - Measuring body fat percentage
+# Assignment 3 - Measuring body fat percentage
+### Candidate number: 203
+### Word count: 910
+{{< pagebreak >}}
 
 ## 3.1 Introduction
 Body fat percentage (%BF) is a relative index of adiposity, as it reflects fat mass relative to the total body mass. It is commonly discussed in health studies, as a heightened %BF is associated with metabolic and cardiovascular disorders [@zengPercentBodyFat2012]. There are several methods to estimate %BF, among them the four-compartment model (4C) is considered the gold standard [@smith-ryanValidityReliability4compartment2017]. This assignment will discuss common measurement methods (DXA, BIA and skinfolds) and compare them in relation to the 4C model.
