@@ -1,0 +1,477 @@
+---
+title: "IDR4000 Portfolio assessment"
+author: Henrik Picton
+bibliography: references.bib
+csl: "apa.csl"
+format: typst
+classoption: 12pt
+execute:
+    cache: true
+---
+# Assignment 1 - Effect of resistance training on muscle hypertrophy
+
+## 1.1 Introduction
+Muscle hypertrophy is the growth of individual muscle fibres resulting from an increase in the number of sarcomeres arranged in parallel within the myofibrils [@goldspinkProliferationMyofibrilsMuscle1970].  Resistance training (RT) is known to induce hypertrophy, which in turn increases muscle size and strength [@schoenfeldMechanismsMuscleHypertrophy2010]. Greater muscle mass is associated with improved health parameters and enhanced athletic performance [@liAssociationsMuscleMass2018; @suchomelImportanceMuscularStrength2016]. This assignment examines how ten intervention studies investigated the effects of RT on muscle hypertrophy, with a focus on study design, RT interventions, measurement methods, and finally, methods for statistical analyses.
+
+## 1.2 Finding the literature
+All literature discussed in this assignment were accessed through PubMed [@NationalCenterBiotechnology]. Only one set of key words was used to find the studies: (((Strength training) AND (muscle hypertrophy)) OR (muscle mass)) OR (lean mass), «clinical trial» or «Randomized controlled trial» published between 2005 and 2025. Of 4121 results 10 studies including a measurement of muscle mass pre and post an intervention were chosen (@tbl-table1).
+
+## 1.3 Literature overview
+
+```{r}
+#| label: tbl-table1
+#| tbl-cap: "The ten studies, their study design, measurement, and statistical method for investigating muscle hypertrophy"
+#| message: false
+#| warning: false
+#| echo: false
+
+library(tidyverse)
+library(gt)
+library(patchwork)
+
+table1 <- data.frame(Author = c("Chaves et al. (2024)", "Cribb et al. (2007)", "Evangelista et al. (2021)",
+                                "Kassiano et al. (2023)", "Neves et al. (2022)", "Ruple et al. (2023)", "Schoenfeld et al. (2015)", "Schoenfeld et al. (2016)",
+                                "Schoenfeld et al. (2019)", "Wohlann et al. (2024)"),
+
+                     Design = c("RCT", "RCT", "RCT", "RCT", "RCT", "RCT", "RCT", "RCT", "RCT",
+                               "Quasi-RCT"),
+
+                     n = c("39", "33", "67", "42", "24", "19", "24", "23", "45", "81"),
+
+                     Measurement = c("VL mCSA (US)", "lean mass (DXA), fiber specific CSA (biopsy)",
+                                     "VL, BB, TB, RF and VL MT (US)", "MGC and LGC (US)", 
+                                     "QF mCSA (MRI)", "VL mCSA (US)",
+                                     "BB + Brachialis, TB, RF, VI, VL MT (US)", "BB + Brachialis, TB, RF, VI, VL MT (US)", "BB + Brachialis, TB, RF, VI, VL MT (US)",
+                                     "PM MT (US)"),
+                     Statistics = c("RM-ANOVA", "RM-ANOVA", "RM-ANOVA", "ANCOVA", "RM-ANOVA", "LMM",
+                                    "RM-ANOVA", "RM-ANOVA", "RM-ANOVA", "RM-ANOVA"))
+
+table1 |> 
+            gt() |> 
+                 tab_options(
+                    table.font.size = px(12)) |> 
+                 tab_source_note(
+                    source_note = md("**RCT** = randomized controlled trial; **US** = ultrasound; **MRI** = magnetic resonance imaging; **VL** = vastus lateralis; **BB** = biceps brachii; **TB** = triceps brachii; **RF** = rectus femoris; **VI** = vastus intermedius; **MT** = muscle thickness; **mCSA** = muscle cross-sectional area."))
+
+
+```
+
+## 1.4 Study design
+All studies selected were of an experimental approach. All but one of the studies had participants randomized into groups. @wohlannInfluence8weeksSupervised2024 had some participants who did not want to take part in a specific group, which made it impossible for the study to be entirely randomized. This study is at risk of unclear (and probably high) risk of selection bias [@thieseObservationalInterventionalStudy2014]. Two of the studies randomized within individuals (i.e., @chavesEffectsResistanceTraining2024: one leg increased reps progressively the other leg increased load, and @nevesEffectDifferentTraining2022: one leg trained three times a week, the other one time per week). 
+
+As participants cannot be blinded to the RT protocol, performance and expectancy bias may be an inherent limitation, and any such bias could affect the apparent effect of a certain training protocol on muscle hypertrophy. Blinding the researchers helps with reducing the risk of bias affecting the study [@karanicolasPracticalTipsSurgical2010]. However, only three of the selected studies mentioned researchers being blinded in the process of assessing muscle hypertrophy [@chavesEffectsResistanceTraining2024; @kassianoGreaterGastrocnemiusMuscle2023; @nevesEffectDifferentTraining2022].
+
+Allocating a portion of the participants into a non-exercise control group strengthens causal inference [@thieseObservationalInterventionalStudy2014]. Only two articles mention a control group. @chavesEffectsResistanceTraining2024 labelled the group following the traditional and widely recommended progressive overload-group as the “control”, making it an active comparator rather than a non-exercise group. @wohlannInfluence8weeksSupervised2024 included a control group without an experimental training intervention, providing a stronger benchmark for inferring causal effects on hypertrophy.
+
+## 1.5 How long RT intervention is needed?
+The RT intervention length of each study varied from six to 11 weeks. The six-week long RT intervention tested by @rupleEffectsResistanceTraining2023 did not yield any significant increase in muscle Cross Sectional Area (mCSA) of the Vasus Lateralis (VL) on trained individuals, which can indicate that the intervention length did not give enough time for hypertrophic adaptations to take place. In comparison, @schoenfeldEffectsLowVs2015 with participants of similar background went through an eight-week intervention where both experimental groups had significant increases in the Biceps Brachii (BB), Triceps Brachii (TB) and Quadriceps Femoris (QF) muscle thickness (MT) post intervention. This suggests that an RT intervention of eight weeks or more are necessary to induce enough stimulus for muscle hypertrophy, especially in the case of participants with RT experience. This is further supported by Schoenfeld’s two other studies as they also show a significant change in MT post eight-week  interventions on RT experienced participants [@schoenfeldLongerIntersetRest2016; @schoenfeldResistanceTrainingVolume2019]. 
+
+## 1.6 How is RT conducted during the intervention?
+All the studies had at least one experimental group exercising at a moderate to high RT intensity. However, the load prescription and methods used to measure given intensity varied. All the studies’ RT protocols used the term “Concentric failure”, meaning the participants did repetitions until they physically could not move the weight for another repetition. The only exceptions being the stretching group from @wohlannInfluence8weeksSupervised2024 and the high-Reps In Reserve (RIR) group from @rupleEffectsResistanceTraining2023. RIR is a term used to describe intensity of a RT set. It is, as the name suggests, the amount of repetitions a person believes they could complete after the repetition range is met [@helmsApplicationRepetitionsReserveBased2016]. The stretching group from @wohlannInfluence8weeksSupervised2024 did not conduct any form of RT, the protocol consisted of stretching the chest for 15 minutes to maximum tolerable discomfort four times a week.
+
+The repetition range set varied from study to study. The most common prescription across the studies was doing repetitions within a range of 8-12RM (Repetitions Maximum), with a few exceptions [@chavesEffectsResistanceTraining2024; @cribbEffectsWheyIsolate2007; @evangelistaSplitFullbodyWorkout2021; @rupleEffectsResistanceTraining2023; @schoenfeldEffectsLowVs2015; @schoenfeldLongerIntersetRest2016; @schoenfeldResistanceTrainingVolume2019; @wohlannInfluence8weeksSupervised2024]. The exceptions being the increasing repetition group in @chavesEffectsResistanceTraining2024 as they set the load to 80% 1RM and increased repetitions from session to session, @kassianoGreaterGastrocnemiusMuscle2023 who did 15-20RM, @nevesEffectDifferentTraining2022 who had a linear increase in intensity (12RM week one to three, 10RM week four to six, and 8RM week seven to), and finally, the low load group in @schoenfeldEffectsLowVs2015 doing 25-35RM.
+
+Every RT group trained the target muscle at least twice a week, which goes in hand with the current literature, suggesting resistance training of each muscle at least twice a week to maximize muscle hypertrophy [@schoenfeldEffectsResistanceTraining2016]. The only exception is @nevesEffectDifferentTraining2022, as they compared a low (one time/week) and high (three times/week) weekly RT frequency.
+
+## 1.7 Measurement methods
+There were four different methods used in the 10 studies, MT from Ultrasonography (US), mCSA from US or Magnetic Resonance Imaging (MRI), and finally muscle fibre specific CSA and contractile protein content analysed from muscle biopsies. 
+
+## 1.7.1 Magnetic Resonance Imaging
+Because of its accurate and non-invasive measurement of muscle mass, MRI is known as the gold standard for establishing mCSA [@lixandraoVastusLateralisMuscle2014; @mitsiopoulosCadaverValidationSkeletal1998]. @nevesEffectDifferentTraining2022 were the only study to use MRI to establish the mCSA of Quadriceps Femoris pre and post intervention. Assessment of the MRI images were plotted by a blinded specialized researcher. The biggest problem with MRI is its availability and need for specialized expertise, which is why several studies prefer US as their method for measuring muscle hypertrophy [@franchiMuscleThicknessCorrelates2018].
+
+## 1.7.2 Ultrasonography
+There were two separate measurement methods undertaken with US: MT and mCSA. Six of the studies used the MT method, which is a direct measurement of the thickness of a specific point along the target (typically half way) muscle from medial to lateral end [@franchiMuscleThicknessCorrelates2018]. Of the 8 studies using US, six used the MT method of measurement [@evangelistaSplitFullbodyWorkout2021; @kassianoGreaterGastrocnemiusMuscle2023; @rupleEffectsResistanceTraining2023; @schoenfeldEffectsLowVs2015, @schoenfeldLongerIntersetRest2016, @schoenfeldResistanceTrainingVolume2019]. 
+
+Measuring mCSA with an US probe requires several pictures from different points of the muscle to assemble images for analysis. @chavesEffectsResistanceTraining2024 would capture several images from the lateral to the medial end of the VL, then compile them in PowerPoint so they were oriented correctly and the mCSA could be measured in a separate program (ImageJ). Unlike the aforementioned method, @rupleEffectsResistanceTraining2023 placed the probe perpendicular to the femur bone, capturing the entirety of the VL as a “slice”. These images would be taken at three separate locations along the same line on the VL muscle, which would finally be analysed in the same program as mentioned above.
+
+## 1.7.3 Muscle biopsy and DXA lean mass
+@cribbEffectsWheyIsolate2007 used three methods to measure muscle hypertrophy: Contractile protein content, fibre specific CSA, and total lean-body-mass measurements from DXA. After a muscle biopsy of the VL, a small part of the sample is frozen for later contractile protein content analysis. Contractile protein assessment is a measurement that can support measurements of hypertrophy, as it can deduct if the increase in specific fibre CSA and lean mass is caused by an increase of liquid content through inflammation as a response to RT, or an actual increase in muscle protein content [@haunCriticalEvaluationBiological2019]. 
+
+DXA can be used to measure fat-free mass with good accuracy [@kimTotalbodySkeletalMuscle2002]. It was used in this study to estimate the changes in both fat percentage and lean mass after intervention [@cribbEffectsWheyIsolate2007].
+
+## 1.8 Statistical methods
+To investigate if hypertrophy occurred, nine of the 10 studies investigated the within individual effect of time on muscle mass. Of these nine studies, eight used a Repeated Measures-ANOVA (RM-ANOVA), and one used a Linear Mixed Model [@rupleEffectsResistanceTraining2023]. @kassianoGreaterGastrocnemiusMuscle2023 used a one-way ANCOVA with baseline adjusted post-values to investigate differences in hypertrophy between groups.
+
+The RM-ANOVA model is appropriate for testing the significance of the effect of time on the outcome variable, in this case, hypertrophy, as it accounts for the dependency between pre- and post-measurements of each participant. Repeated-measures approaches reduce inter-individual variance and increase the statistical power, which is important in RT studies where the norm is small sample sizes with large biological variability [@schoberRepeatedMeasuresDesigns2018]. 
+
+## 1.9 Causal inference
+A well-conducted Randomized Controlled Trial (RCT) is a strong method for supporting causal inference regarding the effect of RT on hypertrophy. However, if key features are lacking, it may be susceptible to uncontrolled variance or biased data. Furthermore, while RCTs can establish whether hypertrophy occurs, they cannot establish the biological or mechanistic processes behind that occurrence [@heckstedenHowConstructConduct2018].
+
+## 1.10 Future aspects
+As mentioned earlier, some studies lacked randomization of participants. Future studies should therefore randomize participants into experimental and control groups to reduce the risk of selection bias. Future studies should blind researchers, as this would strengthen the causal inference by reducing the influence of assessor bias. Finally, future studies should include a control group that does not participate in any form of experimental intervention, as this would further strengthen the aforementioned causal inference.
+
+Additionally, an RT intervention of eight weeks or longer is recommended, especially with resistance trained participants, as hypertrophic adaptations may require extended exposure; this is supported by differences in outcomes observed between a six-week [@rupleEffectsResistanceTraining2023] and an eight-week [@schoenfeldEffectsLowVs2015; @schoenfeldLongerIntersetRest2016; @schoenfeldResistanceTrainingVolume2019] training intervention.
+
+## 1.11 Conclusion
+The literature reviewed in this assignment demonstrates how the ten selected studies investigate the effects RT have on muscle hypertrophy, which is commonly tested using experimental intervention designs with a pre- and post-measurements of target muscles where US dominated as measurement method. Across the chosen studies, repeated-measures statistical approaches dominate, reflecting the longitudinal nature of hypertrophic adaptations and the need to account for within-individual dependency. While RCTs provide strong support for causal inference regarding the effect of resistance training on muscle size, limitations related to study design, measurement methods, and bias restrict mechanistic interpretation. Future research would benefit from continued methodological rigor, particularly through improved randomization, assessor blinding, and the inclusion of appropriate control groups, to further strengthen causal inference in RT research. 
+
+{{< pagebreak >}}
+
+# 2.0 Assignment 2 - Is higher baseline muscle mass associated with a greater hypertrophic response to resistance training? 
+
+## 2.1 Introduction
+Muscle hypertrophy is an adaptive process whereby exposure to an external stimulus leads to remodelling of muscle architecture, resulting in an increase in muscle cross-sectional area (MCSA) [@mcardleMuscleHypertrophy2023]. Resistance training (RT) is considered the most effective exercise modality to induce muscle hypertrophy, primarily through the application of mechanical tension, muscle damage, and metabolic stress. Mechanical tension is the active force generation and passive stretch, caused by an external load on the muscles, initiating a signalling cascade that increases the rate of muscle protein synthesis.  Muscle damage caused by RT initiates an inflammatory response, resulting in the activation of satellite cells promoting repair and remodelling of muscle fibres, contributing to hypertrophy. Combined with mechanical tension, metabolic stress may assist in hypertrophic response through several indirect mechanisms (e.g. cell swelling, increased hormonal response, hypoxia, and activation of growth-related transcription factors) [@schoenfeldMechanismsMuscleHypertrophy2010].
+
+Greater muscle size is associated with greater strength, which improves athletic performance [@maughanStrengthCrosssectionalArea1983; @suchomelImportanceMuscularStrength2016; @tromarasLeanBodyMass2024]. Additionally, an increase in muscle size is connected to a significant improvement of metabolic health [@liAssociationsMuscleMass2018]. Reviews have previously suggested that RT induced hypertrophy diminishes as an individual becomes more trained, with slower rates of morphological change compared with untrained individuals. Additionally, the amount of muscle a person can gain varies between individuals [@fonsecaComparisonTraditionalAdvanced2023;@schoenfeldMechanismsMuscleHypertrophy2010]. However, it is unclear whether an individual with a greater than average hypertrophic response continues the trend of responsiveness as training status improves.  
+
+@mangineInfluenceBaselineMuscle2018 investigated the effects of baseline muscle size on training adaptations. 14 young men with an average resistance training experience of ~6 years were recruited and split into two equal groups based on MCSA: the larger (LGR, n = 7) and smaller (SMR, n = 7) group. After an 8-week intervention they did not find a significant difference in muscle growth between the LGR and SMR group. 
+
+In contrast to @mangineInfluenceBaselineMuscle2018, this study will maintain baseline muscle mass as a continuous variable, conserving statistical power. To investigate the association between baseline muscle characteristics (muscle thickness (MT) and lean mass) and muscle hypertrophy, 31 trained men were recruited and measured (full-body DXA of lean mass and ultrasound of Vastus Lateralis (VL) and Biceps Brachii (BB)) before and after a six-week intervention. Supported by theories from @fonsecaComparisonTraditionalAdvanced2023, the hypothesis is that there is a negative association between baseline muscle characteristics and muscle hypertrophy.
+
+
+## 2.2 Methods
+The methods and data of this assignment was collected from research conducted by @haunEffectsGradedWhey2018 and @haunPretrainingSkeletalMuscle2019.
+
+### 2.2.1 Participants
+Participants were evaluated through a screening process with two criteria: a self-reported RT experience of more than one year, and a back squat one-repetition maximum (RM) ≥ 1.5 x body mass (calculated from a 3RM test). 34 Participants completed the screening. One participant dropped out due to personal reasons, two others for not being able to complete the RT intervention, which led to a final count of 31 participants (@tbl-table2). 
+
+```{r}
+#| label: tbl-table2
+#| tbl-cap: "Participant characteristics at baseline (pre)"
+#| message: false
+#| warning: false
+#| echo: false
+
+library(exscidata)
+library(tidyverse)
+library(gt)
+
+dataset <- hypertrophy
+  
+  
+prevalues <- dataset |>
+  select(
+    AGE,
+    HEIGHT,
+    TRAINING_AGE,
+    BODYMASS_T1,
+    DXA_LBM_T1,
+    VL_T1,
+    BICEPS_T1
+  )
+
+descriptives <- prevalues |>
+  summarise(across(
+    everything(),
+    ~ sprintf("%.2f ± %.2f",
+              mean(.x, na.rm = TRUE),
+              sd(.x, na.rm = TRUE))
+  )) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Mean ± SD"
+  ) |>
+  mutate(
+    Variable = recode(Variable,
+      AGE = "Age (years)",
+      HEIGHT = "Height (cm)",
+      TRAINING_AGE = "RT experience (years)",
+      BODYMASS_T1 = "Body mass (kg)",
+      DXA_LBM_T1 = "DXA lean mass (kg)",
+      VL_T1 = "VL MT (mm)",
+      BICEPS_T1 = "BB MT (mm)"
+    )
+  )
+
+descriptives |>
+  gt() |>
+  cols_label(`Mean ± SD` = "Mean ± SD") |> 
+   tab_source_note(
+                   source_note = md("Data is presented as Mean ± SD of all participants; **RT**, resistance training; **VL MT**, Vastus Lateralis muscle thickness (mm); **BB MT**, Biceps Brachii muscle thickness (mm); **DXA**, Duo x-ray absorptiometry.")
+                  )
+  
+
+```
+
+### 2.2.2 Body composition and muscle thickness measurements
+Body composition and MT measurements were assessed approximately 48h before the first RT session and 24h after the last completed RT session, participants were instructed to fast 12 hours prior to each test. First, body mass (Seca 769; Hanover, MD, USA) and height were assessed to the nearest 0.1 kg and 0.5 cm respectively. Then a full body duo x-ray absorptiometry (DXA) scan of each individual was conducted (Lunar Prodigy; GE Corporation, Fairfield, CT, USA). All DXA scans were done by the same researcher. Finally, duplicate measurements of the right side of the body were averaged with a 3-12 MHz multi-frequency linear phase transducer (Logiq S7 Expert; General Electric, Fairfield, CT, USA) to evaluate right Vastus Lateralis (VL) and Biceps Brachii (BB) muscle thickness (MT). 
+
+During the ultrasonography (US) MT assessment, participants were instructed to stand with their weight on their left leg to assure that the right VL was relaxed during measurement. The US probe was placed horizontally at a marked point 50% of the distance between the Iliac crest and Patella of the Femur, this was done twice. The procedure for BB MT was similar, the probe was placed horizontally on the marked point 60% distal from the acromial process of the scapula to the lateral epicondyle of the humerus, this was repeated twice in the same manner.
+
+
+### 2.2.3 RT intervention
+All exercises during the six-week RT intervention were performed at 60 % of estimated one-RM load established in tests one week before the first RT session with thee-RM tests. Full body RT sessions were conducted three times a week, on Mondays, Wednesdays and Fridays. Friday and Monday session consisted of barbell (BB) back squat, BB bench press, BB stiff-legged deadlifts (SLDL) and Lat pulldowns. Wednesday sessions performed BB overhead press instead of BB bench press. Before each RT session the participants completed a general warmup, which consisted of 25 jumping jacks, 10 bodyweight squats, and 10 standing reaches imitating the SLDL movement with bodyweight. Additionally, participants conducted a specific warmup before each exercise: 50% of working set load for 10 repetitions, 75% for three repetitions, and 95-100% for one repetition. 
+
+The training volume increased each week. The Monday and Friday sessions stared with four sets of 10 repetitions per exercise and increased with two sets per week until week four, week five and six increased with one set per week, resulting in 12 sets per exercise on Monday and Friday during week six. Wednesday sessions started with two sets of 10 repetitions per exercise, increasing with one set per week until week 3. Week four matched the volume of week trhee. Week five and six increased with two sets per week resulting in 8 sets per exercise in week six. Resulting in a total training volume per exercise of 10 sets in week one, incrementally increasing 32 sets in week six. Rest intervals between sets were two minutes. However, if the participants felt they were ready to start before the two-minute mark, they were allowed to do so. This was also the case if the participants needed more than two minutes, if the total session completion time was within two hours. 
+
+### 2.2.4 Statistical methods
+Before analysing the results, a visual inspection of Q-Q plots was conducted to ensure that the residuals were approximately normally distributed. Because the research question concerns the association between baseline muscle characteristics and the magnitude of hypertrophic change, a linear model was chosen to investigate each outcome (BB MT, VL MT, and DXA lean mass).  An ANCOVA style model would answer a conceptually different question, post results conditional on baseline rather than baseline predicting change [@sennChangeBaselineAnalysis2006]. Regression coefficients, 95% confidence intervals, and coefficients of determination (R²) were reported. A p-value of ≤ .05 was considered statistically significant. All statistical analyses were performed using R in Positron (R version 4.4.2, Positron).
+
+```{r}
+#| include: false
+
+analysis_data <- hypertrophy |>
+  select(
+    DXA_LBM_T1, DXA_LBM_T3,
+    VL_T1, VL_T4,
+    BICEPS_T1, BICEPS_T4) |>
+  mutate(
+   dxa_delta = DXA_LBM_T3 - DXA_LBM_T1,
+   vl_delta = VL_T4 - VL_T1,
+   bb_delta = BICEPS_T4 - BICEPS_T1
+  )
+
+lm_vl <- lm(vl_delta ~ VL_T1, data = analysis_data)
+lm_bb <- lm(bb_delta ~ BICEPS_T1, data = analysis_data)
+lm_dxa <- lm(dxa_delta ~ DXA_LBM_T1, data = analysis_data)
+
+summary(lm_vl)
+summary(lm_bb)
+summary(lm_dxa)
+
+par(mfrow = c(1, 3))
+qqnorm(resid(lm_vl));  qqline(resid(lm_vl))
+qqnorm(resid(lm_bb));  qqline(resid(lm_bb))
+qqnorm(resid(lm_dxa)); qqline(resid(lm_dxa))
+
+extract_lm <- function(m, term, outcome) {
+  s <- summary(m)
+  ci <- confint(m)[term, ]
+
+  tibble(
+    Outcome = outcome,
+    Beta = round(s$coefficients[term, "Estimate"], 3),
+    SE = round(s$coefficients[term, "Std. Error"], 3),
+    p = signif(s$coefficients[term, "Pr(>|t|)"], 3),
+    CI_low = round(ci[1], 3),
+    CI_high = round(ci[2], 3),
+    R2 = round(s$r.squared, 3),
+    n = nobs(m)
+  )
+}
+
+results <- bind_rows(
+  extract_lm(lm_vl,  "VL_T1",      "VL MT (Δ)"),
+  extract_lm(lm_bb,  "BICEPS_T1",  "BB MT (Δ)"),
+  extract_lm(lm_dxa, "DXA_LBM_T1", "DXA lean mass (Δ)")
+)
+
+
+results <- results |>
+  mutate(
+    p_display = if_else(p < 0.001, "<0.001", sprintf("%.3f", p))
+  )
+
+
+
+``` 
+
+## 2.3 Results
+Only 30 participants underwent a pre- and post-evaluation of VL MT and DXA lean mass, while 31 participants completed the pre- and post-evaluation of BB MT. 
+
+```{r}
+#| label: tbl-table3
+#| tbl-cap: "Pre- and post-intervention values and mean change"
+#| message: false
+#| warning: false
+#| echo: false
+
+summary_table <- analysis_data |>
+  summarise(
+    VL_pre  = mean(VL_T1, na.rm = TRUE),
+    VL_post = mean(VL_T4, na.rm = TRUE),
+    VL_delta = mean(vl_delta, na.rm = TRUE),
+
+    BB_pre  = mean(BICEPS_T1, na.rm = TRUE),
+    BB_post = mean(BICEPS_T4, na.rm = TRUE),
+    BB_delta = mean(bb_delta, na.rm = TRUE),
+
+    DXA_pre  = mean(DXA_LBM_T1, na.rm = TRUE),
+    DXA_post = mean(DXA_LBM_T3, na.rm = TRUE),
+    DXA_delta = mean(dxa_delta, na.rm = TRUE)
+  )
+
+results_prepost <- tibble(
+  Outcome = c("VL MT (mm)", "BB MT (mm)", "DXA lean mass (kg)"),
+  Pre  = c(
+    mean(analysis_data$VL_T1, na.rm = TRUE),
+    mean(analysis_data$BICEPS_T1, na.rm = TRUE),
+    mean(analysis_data$DXA_LBM_T1, na.rm = TRUE)
+  ),
+  Post = c(
+    mean(analysis_data$VL_T4, na.rm = TRUE),
+    mean(analysis_data$BICEPS_T4, na.rm = TRUE),
+    mean(analysis_data$DXA_LBM_T3, na.rm = TRUE)
+  ),
+  Delta = c(
+    mean(analysis_data$vl_delta, na.rm = TRUE),
+    mean(analysis_data$bb_delta, na.rm = TRUE),
+    mean(analysis_data$dxa_delta, na.rm = TRUE)
+  )
+)
+
+mean_sd <- function(x) {
+  m <- mean(x, na.rm = TRUE)
+  s <- sd(x, na.rm = TRUE)
+  sprintf("%.2f ± %.2f", m, s)
+}
+
+results_prepost <- tibble(
+  Outcome = c("VL MT (mm)", "BB MT (mm)", "DXA lean mass (kg)"),
+  Pre  = c(
+    mean_sd(analysis_data$VL_T1),
+    mean_sd(analysis_data$BICEPS_T1),
+    mean_sd(analysis_data$DXA_LBM_T1)
+  ),
+  Post = c(
+    mean_sd(analysis_data$VL_T4),
+    mean_sd(analysis_data$BICEPS_T4),
+    mean_sd(analysis_data$DXA_LBM_T3)
+  ),
+  Delta = c(
+    mean_sd(analysis_data$vl_delta),
+    mean_sd(analysis_data$bb_delta),
+    mean_sd(analysis_data$dxa_delta)
+  )
+)
+
+
+
+results_prepost |>
+  gt() |>
+  cols_label(
+    Outcome = "Measurement",
+    Pre = "Pre",
+    Post = "Post",
+    Delta = "Δ"
+  ) |> 
+      tab_source_note(
+                   source_note = md("Data is presented as Mean ± SD of all participants; 
+                   **Δ (delta)**, mean change from baseline (pre) to post; **VL MT**, 
+                   Vastus Lateralis muscle thickness (mm); **BB MT**, Biceps Brachii muscle thickness (mm); **DXA**, Duo x-ray absorptiometry.")
+                     )
+
+```
+
+A significant negative association was observed between baseline VL MT and change in VL MT following the intervention (β = -0.324, 95% CI [-0.490, -0.157], p < 0.001, R2 = 0.36). Similarly, baseline BB MT was negatively associated with change in BB MT (β = -0.351, 95% CI [-0.629, -0.073], p = 0.015, R2 = 0.19) (@tbl-table4 and @fig-1, panels A and B).
+
+In contrast, no significant association was observed between baseline DXA-derived lean mass and change in lean mass over the intervention period (β = -0.026, 95% CI [-0.091, 0.039], p = 0.418, R2 = 0.02)  (@tbl-table4 and @fig-1 panel C).
+
+
+```{r}
+#| label: tbl-table4
+#| tbl-cap: "Results of changes (Δ) with baseline as predictor"
+#| message: false
+#| warning: false
+#| echo: false
+
+results |>
+  select(
+    Outcome, Beta,
+    p_display,
+    CI_low, CI_high,
+    R2, n
+  ) |>
+  gt() |>
+  cols_label(
+    Outcome = "Outcome",
+    Beta = "β",
+    p_display = "p",
+    CI_low = "95% CI (lower)",
+    CI_high = "95% CI (upper)",
+    R2 = "R²",
+    n = "n") |> 
+   tab_source_note(
+      source_note = md("**Δ (delta)**, mean change from baseline (pre) to post; **VL MT**, Vastus Lateralis muscle thickness (mm); **BB MT**, Biceps Brachii muscle thickness (mm); **DXA**, Duo x-ray absorptiometry; **β (Estimate)**, for x value in baseline, outcome variable changes with y; **95% Confidence interval**, where the true population effect is expected to lie with 95% confidence, given the observed data and model; **R²**, the proportion of variance in the outcome variable that is explained by the predictor variable in the model; **n**, number of participants included in analysis.")
+   )
+
+
+```
+
+
+```{r fig-1}
+#| fig-cap: "Linear relationship between baseline and hypertrophy of A) VL MT, B) BB MT, and C) lean mass"
+#| fig-show: hold
+#| fig-height: 4
+#| fig-width: 12
+#| message: false
+#| warning: false
+#| echo: false
+
+p1 <- ggplot(analysis_data, aes(x = VL_T1, y = vl_delta)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, linewidth = 1) +
+  labs(
+    x = "Baseline VL MT (mm)",
+    y = "Δ VL MT (mm)",
+    title = "A)"
+  ) +
+  theme_classic()
+
+p2 <- ggplot(analysis_data, aes(x = BICEPS_T1, y = bb_delta)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, linewidth = 1) +
+  labs(
+    x = "Baseline BB MT (mm)",
+    y = "Δ BB MT (mm)",
+    title = "B)"
+  ) +
+  theme_classic()
+
+p3 <- ggplot(analysis_data, aes(x = DXA_LBM_T1, y = dxa_delta)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, linewidth = 1) +
+  labs(
+    x = "Baseline lean mass (kg)",
+    y = "Δ lean mass (kg)",
+    title = "C)"
+  ) +
+  theme_classic()
+
+(p1 | p2 | p3)
+```
+
+## 2.4 Discussion
+The results of this assignment showed a significant negative association between baseline and change in both VL and BB MT, while there was no observed association between baseline and change in lean mass. Potentially indicating that greater muscle mass may be indicative of diminishing hypertrophic returns.
+
+### 2.4.1 Comparing to @mangineInfluenceBaselineMuscle2018
+Unlike @mangineInfluenceBaselineMuscle2018, who saw no significant difference in muscle growth between the LGR and SMR group after 8 weeks of RT, this study saw a significant negative association in baseline MT and change in MT of both BB and VL after a six-week RT intervention. One possible explanation could be the study design, as @mangineInfluenceBaselineMuscle2018 split their participants into two groups of equal size. Dichotomising a continuous variable into groups reduces statistical power and obscures associations by discarding sensitive information regarding the original scale [@altmanCostDichotomisingContinuous2006; @roystonDichotomizingContinuousPredictors2006; @streinerBreakingHardHeartbreak2002]. Maintaining a variable as continuous can yield variance and preserve more precise estimates [@naggaraAnalysisCategorizingDichotomizing2011], whereas categorising variables with arbitrary cut-points may introduce biased results [@chenBiasedOddsRatios2007]. Additionally, a smaller sample size of seven per group further increases the risk of type II errors [@serdarSampleSizePower2021]. 
+
+In contrast to this study, @mangineInfluenceBaselineMuscle2018 measured cross-sectional area (CSA) of their target muscles from panoramic imaging with US. Even though US derived CSA measurements can be accurate using valid and reproducible methods, it can be technically demanding in comparison with a direct MT measurement, introducing a higher chance of greater measurement variability [@betzReliabilityValidityStandardised2021; @nijholtReliabilityValidityUltrasound2017]. These methodological differences could partly explain the divergence between findings.
+
+### 2.4.2 Methodological considerations
+Lean mass derived from DXA did not yield any significant results; a possible explanation could be muscle inflammation, fluid shifts in muscle tissue potentially caused by the high weekly training volume in the latter part of the intervention. DXA machines are particularly sensitive to body fluid shifts, possibly resulting in a spread of results that obscure associations [@baz-valleSystematicReviewEffects2022; @ploutz-snyderResistanceExerciseinducedFluid1995; @st-ongeDualenergyXrayAbsorptiometry2004]. Additionally, MT measurements are local, site-specific, while DXA represents the whole-body lean mass. This means that a change in for instance VL MT does not necessarily represent the change in whole-body lean mass [@nijholtReliabilityValidityUltrasound2017]. 
+As mentioned in the introduction, hypertrophic adaptations diminish with experience [@fonsecaComparisonTraditionalAdvanced2023]. A six-week intervention may only detect early morphological changes, not changes to the whole-body lean mass. Additionally, adding a control group for comparison could have strengthened the internal validity of the results.
+
+### 2.4.3 Practical implications
+Based on the negative associations between baseline and changes in MT, individuals with greater baseline muscle size may experience smaller short-term hypertrophic gains. In practice, this means that expectations for hypertrophic effect on trained individuals should be managed. A smaller change does not necessarily imply an ineffective RT intervention. Furthermore, the individual variation in response may be partially explained by the baseline muscle mass. A uniform training program may not produce uniform outcomes; therefore, progress should be evaluated relative to an individual’s baseline. This study could also show that site-specific US measurements are potentially more informative than DXA-derived whole-body lean mass analyses after a short RT intervention.
+
+### 2.4.4 Future aspects
+As mentioned, a six-week intervention may not be sufficient to yield significant associations in a trained population. Therefore, longer interventions could be necessary to establish whether the observations persist or change over time. @mangineInfluenceBaselineMuscle2018 split participants into groups based on baseline muscle size, potentially limiting statistical power. Future studies should examine baseline muscle characteristics as continuous predictors across different training durations and populations to strengthen statistical inference. 
+
+
+## 2.5 Conclusion
+The aim of this study was to establish whether greater baseline muscle mass is associated with a greater hypertrophic response in resistance-trained individuals. A negative association between baseline and change in US derived VL and BB MT was observed. In contrast, there was no significant association between baseline and change in DXA derived lean mass. In summary, greater muscle size may be associated with diminishing short-term hypertrophy in trained individuals. 
+
+{{< pagebreak >}}
+
+# 3.0 Assignment 3 - Measuring body fat percentage
+
+## 3.1 Introduction
+Body fat percentage (%BF) is a relative index of adiposity, as it reflects fat mass relative to the total body mass. It is commonly discussed in health studies, as a heightened %BF is associated with metabolic and cardiovascular disorders [@zengPercentBodyFat2012]. There are several methods to estimate %BF, among them the four-compartment model (4C) is considered the gold standard [@smith-ryanValidityReliability4compartment2017]. This assignment will discuss common measurement methods (DXA, BIA and skinfolds) and compare them in relation to the 4C model.
+
+## 3.2 What are compartments?
+Models of body composition typically divide the body into theoretical compartments. The common compartments estimated when measuring body composition are fat mass (FM) and fat-free mass (FFM). Total body water and bone mineral content are common compartments measured within FFM.
+
+## 3.3 Defining validity and reliability
+Validity refers to accuracy; in essence how close an estimate is to a reference value. In terms of %BF, it would be how close the results of a measurement method are to the gold standard. Reliability is about creating reproducible results; a reliable method would estimate the same results consistently across several repeated measurements. For %BF this means that a reliable method yields the same %BF estimates with minimal room for random measurement errors.
+
+## 3.4 The four-compartment model
+The 4C model consists of four compartments that are independently combined to create a comprehensive picture of an individual’s body composition. Body density is measured with hydrostatic weighing or using the more modern air displacement plethysmography.  Total body water is measured with an isotope dilution method or a bioelectrical impedance analysis (BIA). Bone mineral content is measured with dual-energy X-ray absorptiometry (DXA). Finally, residual fat-free mass (mostly protein and glycogen) is calculated [@kuriyan4compartmentModelBased2014; @kuriyanBodyCompositionTechniques2018]. The 4C model is considered the gold standard, as it accounts for individual differences in hydration and mineral content, leading to a more accurate estimate of FFM and FM [@smith-ryanValidityReliability4compartment2017]. However, the 4C model is time-consuming and costly, making it challenging to apply in studies with larger populations, because of the need for multiple specialized measurements, trained operators, and data integration across different instruments [@kuriyanBodyCompositionTechniques2018; @mageeNewEstimationEquation2025].
+
+## 3.5 The three-compartment model (DXA)
+DXA is one of the most commonly used laboratory methods to estimate %BF as a practical alternative to the 4C model [@vanderploegPercentBodyFat2003]. DXA divides the body into three compartments: bone mineral content, lean soft tissue, and FM. On a group level, DXA measurements show good agreement with the 4C model. However, on an individual level, it can overestimate FM and %BF and underestimate FFM. Additionally, population characteristics and body fat level affects the validity of its measurements. Although DXA may have a population-dependent validity, it is a practical method with high reliability when measuring changes in a population [@santosAccuracyDXAEstimating2010, @vanderploegPercentBodyFat2003]. 
+
+## 3.6 Two-compartment models
+Two-compartment models as the name suggests, split the body composition into two compartments, FM and FFM (Kuriyan, 2018).
+
+### 3.6.1 BIA
+Bioelectrical impedance analysis (BIA) is a popular clinical method for estimating %BF because it is inexpensive, time-saving, and non-invasive, despite its limited validity compared to the 4C model. BIA measures electrical impedance, leading to an estimate of total body water [@bohmUseBioelectricalImpedance2013]. BIA assumes a constant hydration of FFM, uniform body geometry and stable electrolyte distribution. Total body water is then converted to FFM based on these assumptions. %BF can be derived from these estimates. Relative to the 4C model, BIA shows lower validity. Agreement with results of the 4C model is highly variable, depending greatly on population characteristics, prediction equations, and the BIA device type being used. While BIA shows limited validity relative to the 4C model, the test-retest reliability can be acceptable, especially when test conditions are standardized [@chouinardBioelectricalImpedanceVs2007; @nickersonValiditySelectedBioimpedance2017; @siedlerAssessingReliabilityCrosssectional2023]. 
+
+### 3.6.2 Skinfold measurement
+Skinfold thickness measurement is a field-based method commonly used in epidemiological studies and in sports and fitness settings, prioritizing accessibility and low cost over precision [@kasperComeBackSkinfolds2021]. Skinfolds measure subcutaneous fat thickness at specific anatomical sites. %BF is estimated by using prediction equations and assuming a fixed relationship between subcutaneous fat and total fat. Relative to the 4C model skinfold measurements show a low validity. The validity of skinfold measurements relies heavily on the individual’s sex, age, ethnicity, training status, and level of adiposity. Skinfold measurements tend to underestimate %BF compared with the 4C model [@nickersonRelativeAccuracySkinfolds2020; @petersonDevelopmentValidationSkinfoldthickness2003]. Additionally, test reliability is dependent on the skills and training of the operator [@machadoReliabilitySkinfoldMeasurements2025].
+
+### 3.7 Conclusion
+This assignment had the goal of evaluating different measurement methods for %BF. The 4C model is considered the gold standard because it accounts for inter-individual variability in hydration and mineral content. However, due to its complexity, high cost, and time consumption other methods could be considered. DXA has high validity relative to the 4C model, with high reliability. BIA, while being less accurate and assumption-dependent, has acceptable reliability, is cheap, quick, and non-invasive, making it more suitable for larger study populations. Finally, the skinfold measurement method has the lowest validity, and its reliability is heavily dependent on the operator. However, it is useful in cases where resources are limited. No method is clearly better than the other; it all depends on the study’s precision requirements, study size, available resources, and population characteristics. 
+
